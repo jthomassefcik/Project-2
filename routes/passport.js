@@ -1,5 +1,11 @@
+var passport = require('passport-local');
+
+module.exports = function(app) {
+
 //By default, `LocalStrategy` expects to find credentials
 // in parameters named username and password
+
+//passport.use(new LocalStrategy({
 app.use(new LocalStrategy({
         usernameField: 'user_id',
         passwordField: 'user_password'
@@ -25,12 +31,12 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
+
+}
