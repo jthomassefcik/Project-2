@@ -1,9 +1,8 @@
 //By default, `LocalStrategy` expects to find credentials
 // in parameters named username and password
 app.use(new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'passwd',
-        session: false
+        usernameField: 'user_id',
+        passwordField: 'user_password'
 },
   function(username, password, done) {
     User.findOne({ username: username }, function (err, user) {
