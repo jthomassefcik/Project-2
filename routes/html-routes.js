@@ -9,6 +9,10 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/index.html"));
       });
 
+      app.get("/newUser", function(req, res) {
+        res.sendFile(path.join(__dirname, "../public/newUser.html"));
+      });
+
 
 
     app.post("/login",function(req,res){
@@ -29,6 +33,7 @@ module.exports = function(app) {
             user_id:req.body.Email,
             user_password:req.body.Password,
             user_first_name:req.body.firstName,
+            user_last_name:req.body.lastName,
             user_email:req.body.Email
         }
 
