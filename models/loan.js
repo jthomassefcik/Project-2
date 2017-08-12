@@ -14,7 +14,7 @@ module.exports = function (sequelize, Datatypes){
             allowNull: false
         },
         loan_type: {
-            type: Datatypes.String,
+            type: Datatypes.STRING,
             allowNull: false
         },
         principal: {
