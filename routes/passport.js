@@ -6,9 +6,10 @@ app.use(new LocalStrategy({
 },
   function(username, password, done) {
     User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
+      if (err) { console.log("passport error"); return done(err); }
+      if (!user) { console.log("passport - user did not authenticate!"); return done(null, false); }
+      if (!user.verifyPassword(password)) { console.log("passport - password did not authenticate!");return done(null, false); }
+      console.log("passport - Welcome User!");
       return done(null, user);
     });
   }
