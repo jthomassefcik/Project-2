@@ -27,6 +27,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     user_email:{
         type: DataType.STRING
+    },
+    user_extra_payment: {
+      type: DataType.FLOAT,
+      validate: {
+          isDecimal: true
+      }
     }
   });
   return User;
