@@ -7,7 +7,7 @@
 
 // -- user table has a 1 to many relationship to loan table
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, DataType) {
   var User = sequelize.define("User", {
     user_id:{
       type: DataType.STRING,
@@ -27,6 +27,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     user_email:{
         type: DataType.STRING
+    },
+    user_extra_payment: {
+      type: DataType.FLOAT,
+      validate: {
+          isDecimal: true
+      }
     }
   });
   return User;
