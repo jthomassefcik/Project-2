@@ -8,7 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../style/style_login.css">
+    <link rel="stylesheet" type="text/css" href="/style/style_login.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
 
@@ -22,14 +22,14 @@
                 <div class="account-wall">
                     <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                         alt="">
-                    <form class="form-signin">
-                        <input type="text" class="form-control" placeholder="Email" required autofocus>
-                        <input type="password" class="form-control" placeholder="Password" required>
+                  
+                        <input id="username" type="text" class="form-control" placeholder="Email" required autofocus>
+                        <input id="password" type="password" class="form-control" placeholder="Password" required>
                         <button class="btn btn-lg btn-primary btn-block" id="loginUser">
-                    Sign in</button>
+                    Sign in</button><div id="loginMsg"></div>
                         <label id="member" class="checkbox pull-left"><input id="member-me" type="checkbox" value="remember-me">Remember me</label>
                         <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
-                    </form>
+                  
                 </div>
                 <a href="/newUser" class="text-center new-account">Create an account</a>
             </div>
@@ -39,16 +39,16 @@
 <script type="text/javascript">
     $("#loginUser").on("click", function () {
         var User = {
-            Email: $('#name').val().trim().toLowercase(),
-            Password: $("#password").val().trim()
+            username: $('#username').val().trim().toLowerCase(),
+            password: $("#password").val().trim()
         };
-
+        $("#password").val("");
         var currentURL = window.location.origin;
-        $.post(currentURL + '/login', User, function (res) {
-            console.log(res);
+        $.post("/login", User, function (res) {
+            if(res)
+            window.location.replace(currentURL+"/home");
+                 
         })
-
-        console.log(User);
     });
 </script>
 

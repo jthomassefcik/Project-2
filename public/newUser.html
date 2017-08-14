@@ -8,7 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="../style/style_login.css">
+    <link rel="stylesheet" type="text/css" href="/style/style_login.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
 
@@ -23,14 +23,14 @@
                 <div class="account-wall">
                     <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
                         alt="">
-                    <form class="form-signin">
+                   
                         <input type="text" class="form-control col-lg-6" placeholder="First Name" id="firstName" required autofocus>
                         <input type="text" class="form-control" placeholder="Last Name" id="lastName" required autofocus>
                         <input type="text" class="form-control" placeholder="Email" id="email" required autofocus>
                         <input type="password" class="form-control" placeholder="Password" id="password" required>
                         <button class="btn btn-lg btn-primary btn-block" id="newUser">Go</button>
                         
-                    </form>
+                    
                 </div>
             </div>
         </div>
@@ -48,10 +48,10 @@
         };
 
         var currentURL = window.location.origin;
-        $.post(currentURL + '/createAccount', newUser, function (res) {
-            console.log(res);
+        $.post(currentURL + '/createAccount', newUser, function (data) {
+            if(data)
+            window.location.replace(window.location.origin.replace("newUser",""));
         })
 
-        console.log(newUser);
     });
 </script>

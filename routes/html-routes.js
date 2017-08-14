@@ -3,9 +3,10 @@ var path = require("path");
 var db = require("../models");
 
 
-module.exports = function(app) {
+module.exports = function(app,passport) {
 
     app.get("/", function(req, res) {
+        console.log(req.user);
         res.sendFile(path.join(__dirname, "../public/index.html"));
       });
 
@@ -13,17 +14,18 @@ module.exports = function(app) {
         res.sendFile(path.join(__dirname, "../public/newUser.html"));
       });
 
+      app.get("/home", function(req, res) {
+        if(req.user)
+        res.sendFile(path.join(__dirname, "../public/home.html"));
+        else
+        res.sendFile(path.join(__dirname, "../public/index.html"));
+
+      });
 
 
-    app.post("/login",function(req,res){
-        db.User.findOne({
-            where:{user_password:req.body.Password,user_email:req.body.Email}
-        }).then(function(data){
-            if(data.length>0)
-                res.json(true);
-            else
-                res.json(false);
-        });
+
+    app.post("/login",passport.authenticate('local', { failureRedirect: '/login' }),function(req,res){
+        res.json(true);
     });
 
 
