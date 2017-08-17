@@ -6,7 +6,6 @@ var db = require("../models");
 module.exports = function(app,passport) {
 
     app.get("/", function(req, res) {
-        console.log(req.user);
         res.sendFile(path.join(__dirname, "../public/index.html"));
       });
 
