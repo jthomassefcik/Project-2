@@ -12,6 +12,7 @@
     "mocha": "^3.5.0",
     "mysql": "^2.14.1",
     "mysql2": "^1.4.0",
+    "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "sequelize": "^4.4.2"
   },

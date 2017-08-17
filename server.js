@@ -34,7 +34,7 @@ passport.use(new Strategy(
 app.use(bodyParser.json());
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-app.use(require('cookie-parser')());
+//app.use(require('cookie-parser')());
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 

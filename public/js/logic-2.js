@@ -1,3 +1,10 @@
+//todo
+    //1. update method into user optimum payment
+    //2. grab max value from front end
+    //3. add includes in findALL query
+    //4. display results to front end
+    //5. error handling?
+
 var calc2 = function () {
 
     var db = require("../models");
