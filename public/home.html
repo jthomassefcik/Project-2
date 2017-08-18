@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/style/style_login.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body style="background-color: #f5f5f5;">
@@ -38,7 +37,6 @@
 
         </div>
 
-        <form>
             <div class="well">
                 <div class="container">
                     <div class="row">
@@ -51,17 +49,15 @@
                                         <th>Balance</th>
                                         <th>Interest Rate</th>
                                         <th>Minimum Payment</th>
-                                        <th>Optimal Payment</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tr>
+                                <tr class="trRow Result">
                                     <td>1</td>
-                                    <td>News</td>
-                                    <td>News Cate</td>
-                                    <td>News Cate</td>
-                                    <td>News Cate</td>
-                                    <td>News Cate</td>
+                                    <td>no result</td>
+                                    <td>no result</td>
+                                    <td>no result</td>
+                                    <td>no result</td>
                                     <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                                         <a href="#" data-id="name" class="deletebtn btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                                 </tr>
@@ -73,7 +69,7 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add New Loan</button>
                         </div>
                         <div class="col-xs-12 col-sm-10 cal">
-                            <form>
+                           
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <button class="btn btn-primary pull-right">Calculate</button>
@@ -82,7 +78,7 @@
                                         <input class="form-control" placeholder="How much can you pay?">
                                     </div>
                                 </div>
-                            </form>
+
                         </div>
                     </div>
 
@@ -95,13 +91,13 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
+                                    <div class="form-group">
+                                        <div >
                                             <label for="name">Name</label>
                                             <input name="name" type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Give a nickname to your loan.">
 
                                         </div>
-                                        <div class="form-group">
+                                        <div >
                                             <label for="loan_type">Loan Type</label>
                                             <select name="loan_type" class="form-control" id="loan_type">
                                                     <option>Card</option>
@@ -111,24 +107,25 @@
                                                     <option>School Loan</option>
                                                 </select>
                                         </div>
-                                        <div class="form-group">
+                                        <div >
                                             <label for="balance">balance</label>
                                             <input name="balance" type="number" class="form-control" id="balance" placeholder="$ 0.00">
                                         </div>
-                                        <div class="form-group">
+                                        <div >
                                             <label for="interest_rate">Interest</label>
-                                            <input name="interest_rate" type="number" class="form-control" id="name" aria-describedby="emailHelp" placeholder="$ 0.00">
+                                            <input name="interest_rate" type="number" class="form-control" id="interest_rate" aria-describedby="emailHelp" placeholder="$ 0.00">
                                         </div>
-                                        <div class="form-group">
+                                        <div >
                                             <label for="minimum_Payment">Minimum Payment</label>
                                             <input name="minimum_Payment" type="text" class="form-control" id="minimum_Payment" aria-describedby="emailHelp" placeholder="$ 0.00">
                                         </div>
-
-                                    </form>
+                                    </div>
+                                  
                                 </div>
-                                <div class="modal-footer">
+                                <div >
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button id="newLoan" type="button" class="btn btn-primary">Add +</button>
+                                    <button id="newLoan" data-updateid="NULL" type="button" class="btn btn-primary">Add +</button>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -136,96 +133,100 @@
 
                 </div>
             </div>
-        </form>
+        
     </div>
 
 </body>
 
 <script type="text/javascript">
-    var currentURL = window.location.origin;
-    $("#newLoan").on("click", function () {
+
+   $(document).ready(function(){
+
+      getinitialData();
+
+       $("#newLoan").on("click",function(){
         var newLoan = {
-            name: $("#name").val().trim().toLowercase(),
+            name: $("#name").val().trim().toLowerCase(),
             loan_type: $("#loan_type").val(),
             balance: $("#balance").val(),
             interest: $("#interest_rate").val(),
-            minimum_Payment: $("#minimum_Payment")
+            minimum_Payment: $("#minimum_Payment").val()
         };
+        
+        if($("#newLoan").text()=="Add +")
+        $.post("/api/newLoan", newLoan, function (res) {
+            $("#myModal").modal("hide");
+            getinitialData();
+        });
+        else{
+         newLoan.id=$(this).attr("data-updateid");
+         $.post("/api/update", newLoan, function (res) {
+            $("#newLoan").attr("data-updateid","NULL");
+            $("#myModal").modal("hide");
+            getinitialData();
+        });
+        }
 
-        var currentURL = window.location.origin;
-        $.post(currentURL + '/createAccount', newLoan, function (res) {
-            console.log(res);
-            updateTable(res);
-        })
 
-        console.log(newLoan);
     });
 
-    $(".deletebtn").on("click", function () {
-        console.log("deletebtn working")
-        var id = $(this).data("id");
-        console.log(id);
 
-        $.post(currentURL + 'api/delete', id, function (res) {
-
-            updateTable(res);
-        })
-    })
-
-</script>
-
-<!--Script for handlebars template-->
-
-<script>
-    var loanTemplate;
-
-    $(document).ready(function () {
-        var source = $("#loan-template").html();
-        loanTemplate = Handlebars.compile(source);
-
-        getinitialData();
-
-
-    })
 
     function getinitialData() {
-        $.get(currentURL + 'api/getUser', function (res) {
-            updateTable(res);
+        $.get('api/getUser', function (res) {
+         updateTable(res)
 
         })
     }
 
     function updateTable(res) {
         var userloanInfo = res;
+        $(".trRow").remove();
         for (var i = 0; i < userloanInfo.length; i++) {
-            var newRow = {
-                name: userloanInfo[i].name,
-                loan_type: userloanInfo.loan_type,
-                balance: userloanInfo.balance,
-                interest: userloanInfo.interest,
-                minimum_Payment: userloanInfo.minimum_Payment,
-                optimal_Payment: userloanInfo.optimal_Payment
-
-            }
-            var html = loanTemplate(newRow);
-
-            $("#loanTable").html(html);
-
+            var tblResults="";
+            tblResults+="<tr class=\"trRow Result"+i+"\">";
+            tblResults+="<td>"+userloanInfo[i].name+"</td>";
+            tblResults+="<td>"+userloanInfo[i].loan_type+"</td>";
+            tblResults+="<td>"+userloanInfo[i].balance+"</td>";
+            tblResults+="<td>"+userloanInfo[i].interest_rate+"</td>";
+            tblResults+="<td>"+userloanInfo[i].minimum_Payment+"</td>";
+            tblResults+="<td class=\"text-center\"><a data-row=\"Result"+i+"\"  data-id="+userloanInfo[i].id+" class='btn btn-info btn-xs' ><span class=\"glyphicon glyphicon-edit\"></span> Edit</a>";
+            tblResults+="<a data-id="+userloanInfo[i].id+"  class=\"deletebtn btn btn-danger btn-xs\"><span class=\"glyphicon glyphicon-remove\"></span> Del</a></td>";
+            tblResults+="</tr>";
+            $("#loanTable").append(tblResults);
         }
     }
+    
+    $(document).on("click",".deletebtn",function (){
+        var itemid=$(this).attr("data-id");
+        $.post("/api/delete",{id:itemid},function(data){
+            getinitialData();
+        });
+    });
 
-</script>
+    $(document).on("click",".btn-info",function (){
+        var dataRow=$(this).attr("data-row");
+        $("#name").val($("."+dataRow+" td").eq(0).text());
+        $("#loan_type").val($("."+dataRow+" td").eq(1).text());
+        $("#balance").val($("."+dataRow+" td").eq(2).text());
+        $("#interest_rate").val($("."+dataRow+" td").eq(3).text());
+        $("#minimum_Payment").val($("."+dataRow+" td").eq(4).text());
+        $("#newLoan").text("Update");
+        $("#newLoan").attr("data-updateid",$(this).attr("data-id"));
+        $("#myModal").modal("show");       
+    });
 
-<script id="loan-template" type="text/x-handlebars-template">
-    <tr>
-        <td>{{name}}</td>
-        <td>{{loan_type}}</td>
-        <td>{{balance}}</td>
-        <td>{{interest}}</td>
-        <td>{{minimum_Payment}}</td>
-        <td>{{optimal_Payment}}</td>
-        <td class="text-center"><a data-id={{name}} class='deletebtn btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>            <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-    </tr>
+    $("#myModal").on('hide.bs.modal', function () {
+            $("#newLoan").text("Add +");
+            $("#name").val("");
+            $("#loan_type").val("Card");
+            $("#balance").val("");
+            $("#interest_rate").val("");
+            $("#minimum_Payment").val("");
+    });
+  
+
+   });
 
 </script>
 
